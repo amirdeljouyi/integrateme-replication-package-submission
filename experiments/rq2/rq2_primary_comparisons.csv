@@ -1,0 +1,7 @@
+outcome,outcome_label,left_variant,right_variant,comparison,n_targets,n_repositories,wins,ties,losses,median_repository_improvement,p_raw,p_holm
+closeness_score,Combined closeness,ES-based,LLM-based,ES-based -> LLM-based,32,24,20,0,4,0.03563376217576405,0.001543879508972168,0.006175518035888672
+closeness_score,Combined closeness,ES-based,Agentic-based,ES-based -> Agentic-based,32,24,22,0,2,0.17098150294563647,3.5881996154785156e-05,0.00017940998077392578
+conformance_score,Conformance summary,ES-based,LLM-based,ES-based -> LLM-based,32,24,17,0,7,0.05099537029980605,0.06391465663909912,0.06391465663909912
+conformance_score,Conformance summary,ES-based,Agentic-based,ES-based -> Agentic-based,32,24,23,0,1,0.2942817060724497,2.9802322387695312e-06,1.7881393432617188e-05
+ts_total_rate,Test smells per test,ES-based,LLM-based,ES-based -> LLM-based,32,24,19,1,4,0.5833771192377751,0.002599477767944336,0.007798433303833008
+ts_total_rate,Test smells per test,ES-based,Agentic-based,ES-based -> Agentic-based,32,24,19,0,5,2.385416666666667,0.006610751152038574,0.013221502304077148

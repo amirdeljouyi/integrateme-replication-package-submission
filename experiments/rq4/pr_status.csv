@@ -1,0 +1,33 @@
+repo,pr,area,state,checks,action,url
+hazelcast/hazelcast,26596,ConfigXmlGenerator,open,"3 checks: copybara-os-pr failed; Milestone Check pending","Milestone may need maintainer; inspect copybara if it persists",https://github.com/hazelcast/hazelcast/pull/26596
+apache/iceberg,17020,TableMetadata,open,"37 checks: build-checks failed","Inspect CI logs if review resumes",https://github.com/apache/iceberg/pull/17020
+jetty/jetty.project,15332,ContextHandler,open,"9 checks: Jenkins, PR-merge, and JDK 25 tests failed","Needs failure-log inspection or maintainer retry",https://github.com/jetty/jetty.project/pull/15332
+opentripplanner/OpenTripPlanner,7793,DefaultTransitService,merged,"Merged July 28, 2026","No action",https://github.com/opentripplanner/OpenTripPlanner/pull/7793
+orientechnologies/orientdb,10812,OMatchStatement,merged,"Merged","No action",https://github.com/orientechnologies/orientdb/pull/10812
+skylot/jadx,2901,JadxDecompiler,merged,"Merged","No action",https://github.com/skylot/jadx/pull/2901
+quarkusio/quarkus,55134,QuteProcessor,merged,"Merged","No action",https://github.com/quarkusio/quarkus/pull/55134
+codecentric/spring-boot-admin,5481,UiController,merged,"Merged","No action",https://github.com/codecentric/spring-boot-admin/pull/5481
+OpenAPITools/openapi-generator,24203,JavaClientCodegen,merged,"Merged","No action",https://github.com/OpenAPITools/openapi-generator/pull/24203
+aeron-io/aeron,2087,Subscription,closed,"Closed without merge","No action unless redesigned around public behavior",https://github.com/aeron-io/aeron/pull/2087
+skylot/jadx,2910,ClassGen,closed,"Closed without merge","No follow-up recommended; maintainer asked not to add more tests to this project",https://github.com/skylot/jadx/pull/2910
+aeron-io/aeron,2091,AeronCluster,open,"No checks reported yet","Wait",https://github.com/aeron-io/aeron/pull/2091
+Azure/azure-sdk-for-java,49724,ImplementationBridgeHelpers,open,"All 44 reported checks pass; review required","Wait",https://github.com/Azure/azure-sdk-for-java/pull/49724
+micronaut-projects/micronaut-core,12774,DefaultApplicationContext,merged,"Merged July 24","No action",https://github.com/micronaut-projects/micronaut-core/pull/12774
+javaparser/javaparser,5059,CloneVisitor,open,"Conflict resolved; focused tests and AppVeyor pass","Wait for review",https://github.com/javaparser/javaparser/pull/5059
+jetty/jetty.project,15369,HttpConnection,open,"9 checks: PR-merge and JDK 26 tests failed; Jenkins pending","Needs failure-log inspection or maintainer retry",https://github.com/jetty/jetty.project/pull/15369
+dropwizard/dropwizard,11242,DropwizardResourceConfig,open,"Checks passed","Wait",https://github.com/dropwizard/dropwizard/pull/11242
+codecentric/spring-boot-admin,5511,AdminServerUiAutoConfiguration,merged,"Merged","No action",https://github.com/codecentric/spring-boot-admin/pull/5511
+apache/kafka,22757,SubscriptionState,open,"No failing checks; review required","Wait",https://github.com/apache/kafka/pull/22757
+alibaba/druid,6658,DruidDataSource,merged,"Merged July 31, 2026","No action",https://github.com/alibaba/druid/pull/6658
+open-telemetry/opentelemetry-java-instrumentation,19123,Instrumenter,merged,"Merged August 1, 2026","No action",https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/19123
+pmd/pmd,6829,PmdAnalysis,merged,"Merged","No action",https://github.com/pmd/pmd/pull/6829
+reactor/reactor-core,4305,Operators,open,"DCO passed; review required","Wait",https://github.com/reactor/reactor-core/pull/4305
+apache/flink,28591,CheckpointCoordinator,open,"FLINK-40183 added; title and review replies updated","Wait for re-review",https://github.com/apache/flink/pull/28591
+apache/incubator-seata,8151,FileConfiguration,open,"Merge conflict; review required; no checks reported","Resolve merge conflict",https://github.com/apache/incubator-seata/pull/8151
+opentripplanner/OpenTripPlanner,7770,VertexLinker,merged,"Merged August 3, 2026","No action",https://github.com/opentripplanner/OpenTripPlanner/pull/7770
+orientechnologies/orientdb,10814,ODocument,open,"Checks passed","Wait",https://github.com/orientechnologies/orientdb/pull/10814
+camunda/camunda,59039,DefaultExporterResourceProvider,merged,"Merged August 27, 2026","No action",https://github.com/camunda/camunda/pull/59039
+micronaut-projects/micronaut-core,13056,DefaultBeanContext,merged,"Replacement PR merged September 8, 2026; original author commit retained","No action",https://github.com/micronaut-projects/micronaut-core/pull/13056
+aws/aws-sdk-java-v2,7066,SyncClientClass,closed,"Closed without merge August 17, 2026","No action; maintainer considered the string-matching test fragile and not behavior-focused",https://github.com/aws/aws-sdk-java-v2/pull/7066
+questdb/questdb,7448,ServerMain,open,"All 13 reported checks pass; branch is behind; review required","Wait; update only if maintainers request it",https://github.com/questdb/questdb/pull/7448
+aws/aws-sdk-java-v2,7214,AsyncClientClass,closed,"Closed without merge August 17, 2026","No action; maintainer considered the string-matching test fragile and not behavior-focused",https://github.com/aws/aws-sdk-java-v2/pull/7214

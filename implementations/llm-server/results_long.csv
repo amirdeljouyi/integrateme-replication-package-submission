@@ -1,0 +1,3 @@
+group_id,variant,candidate_file,manual_file,token_jaccard,shingle_jaccard_k5,lcs_token_ratio,codebleu,closeness_score,style_distance_to_manual,cyclo_avg,avg_method_loc,loc,methods
+io.quarkus.qute.QuteProcessor#case3,auto,compare/generated.java,compare/manual.java,0.10872675250357654,0.039065758376199085,0.02328610975411171,0.661676254363716,0.23662517627351218,7.0912815145453045,1.3603603603603605,15.378378378378379,2070,111
+io.quarkus.qute.QuteProcessor#case3,adopted,compare/adopted.java,compare/manual.java,0.24624624624624625,0.15476738830032244,0.14094159713945173,0.7326340909425008,0.34365801244998656,2.0462385435802037,1.09375,8.21875,415,32

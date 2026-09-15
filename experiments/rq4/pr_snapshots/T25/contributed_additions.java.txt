@@ -1,0 +1,40 @@
+import static org.assertj.core.api.Assertions.assertThat;
+import java.io.IOException;
+import java.lang.reflect.Proxy;
+import java.util.Map;
+import io.quarkus.qute.runtime.QuteConfig;
+    public void testTemplateDataIgnorePattern() throws Exception {
+    public void testCollectNamespaceExpressions() throws Exception {
+    @Test
+    public void testCollectTemplateRoots() {
+        TemplateRootsBuildItem roots = new QuteProcessor().collectTemplateRoots(List.of(
+                new TemplateRootBuildItem("templates"),
+                new TemplateRootBuildItem("/emails/"),
+                new TemplateRootBuildItem("templates")));
+
+        assertEquals(Set.of("templates", "emails"), roots.getPaths());
+    }
+
+    @Test
+    public void testCollectTemplateVariants() throws IOException {
+        EffectiveTemplatePathsBuildItem paths = new EffectiveTemplatePathsBuildItem(List.of(
+                templatePath("item.html"), templatePath("item.txt"), templatePath("detail.html"),
+                templatePath("ignored.json")));
+
+        Map<String, List<String>> variants = new QuteProcessor()
+                .collectTemplateVariants(paths, configWithSuffixes("html", "txt")).getVariants();
+
+        assertThat(variants).containsOnlyKeys("item", "detail");
+        assertThat(variants.get("item")).containsExactlyInAnyOrder("item.html", "item.txt");
+        assertThat(variants.get("detail")).containsExactly("detail.html");
+    }
+
+    private static TemplatePathBuildItem templatePath(String path) {
+        return TemplatePathBuildItem.builder().path(path).extensionInfo("test").build();
+    }
+
+    private static QuteConfig configWithSuffixes(String... suffixes) {
+        return (QuteConfig) Proxy.newProxyInstance(QuteConfig.class.getClassLoader(), new Class<?>[] { QuteConfig.class },
+                (proxy, method, args) -> method.getName().equals("suffixes") ? List.of(suffixes) : null);
+    }
+

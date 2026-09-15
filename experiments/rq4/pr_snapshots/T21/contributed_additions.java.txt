@@ -1,0 +1,39 @@
+import java.time.Duration;
+import org.locationtech.jts.geom.Envelope;
+
+  private static Instant startOfService(LocalDate serviceDate) {
+    return ServiceDateUtils.asStartOfService(serviceDate, service.getTimeZone()).toInstant();
+  }
+
+  @Test
+  void findTripTimesOnDateForPatternAtStop() {
+    var tripTimes = service.findTripTimesOnDate(
+      STOP_A,
+      REAL_TIME_PATTERN,
+      startOfService(SERVICE_DATE),
+      Duration.ofMinutes(3),
+      10,
+      ArrivalDeparture.DEPARTURES,
+      false
+    );
+
+    assertThat(tripTimes.stream().map(TripTimeOnDate::getTrip).toList()).containsExactly(
+      TRIP,
+      ADDED_TRIP
+    );
+    assertThat(tripTimes.stream().map(TripTimeOnDate::getStop).toList()).containsExactly(
+      STOP_A,
+      STOP_A
+    );
+    assertThat(
+      tripTimes.stream().map(TripTimeOnDate::getRealtimeDeparture).toList()
+    ).containsExactly(DELAY, 10);
+  }
+
+  @Test
+  void findRegularStopsByBoundingBox() {
+    var stops = service.findRegularStopsByBoundingBox(new Envelope(9.9, 10.1, 59.9, 60.1));
+
+    assertThat(stops).containsAtLeast(STOP_A, STOP_B, STOP_C, STOP_ONE);
+    assertThat(service.findRegularStopsByBoundingBox(new Envelope(170, 180, 80, 90))).isEmpty();
+  }

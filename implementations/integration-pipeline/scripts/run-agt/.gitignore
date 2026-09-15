@@ -1,0 +1,10 @@
+# The AGT tool scatters stray files across its working directory (thousands of
+# string constants written out as filenames), so ignore everything by default
+# and allow only the launcher and the tool jar.
+#
+# Generated output no longer lands here: it goes to results/run-agt/, set via
+# generate_auto_output_dir in the integration pipeline.
+*
+!/.gitignore
+!/run-agt.sh
+!/llmsuite-r.jar

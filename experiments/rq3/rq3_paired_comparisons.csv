@@ -1,0 +1,16 @@
+level,metric,comparison,left_variant,right_variant,paired_blocks,nonzero_differences,right_higher,equal,right_lower,median_difference,mean_difference,wilcoxon_statistic,p_value_exact_two_sided
+Class,Existing style alignment,LLM-based - ES-based,ES-based,LLM-based,64,30,29,34,1,0.0,0.5,13.5,5.029141902923584e-08
+Class,Existing style alignment,Agentic-based - ES-based,ES-based,Agentic-based,64,57,57,7,0,1.0,1.375,0.0,1.3877787807814457e-17
+Class,Existing style alignment,Agentic-based - LLM-based,LLM-based,Agentic-based,64,43,42,21,1,1.0,0.875,14.5,6.59383658785373e-12
+Class,Structure/fixture reuse,LLM-based - ES-based,ES-based,LLM-based,36,14,14,22,0,0.0,0.4722222222222222,0.0,0.0001220703125
+Class,Structure/fixture reuse,Agentic-based - ES-based,ES-based,Agentic-based,36,33,33,3,0,2.0,1.4444444444444444,0.0,2.3283064365386963e-10
+Class,Structure/fixture reuse,Agentic-based - LLM-based,LLM-based,Agentic-based,36,25,25,11,0,1.0,0.9722222222222222,0.0,5.960464477539063e-08
+Method,Naturalness,LLM-based - ES-based,ES-based,LLM-based,64,39,34,25,5,0.35,0.49140625,33.5,1.0903022484853864e-08
+Method,Naturalness,Agentic-based - ES-based,ES-based,Agentic-based,64,53,51,11,2,1.0,1.06015625,10.0,8.215650382226158e-15
+Method,Naturalness,Agentic-based - LLM-based,LLM-based,Agentic-based,64,41,40,23,1,0.55,0.56875,24.5,6.08451955486089e-10
+Method,Naming,LLM-based - ES-based,ES-based,LLM-based,64,55,47,9,8,0.6,0.6263020833333334,167.0,3.8320783102285816e-08
+Method,Naming,Agentic-based - ES-based,ES-based,Agentic-based,64,56,53,8,3,1.0,0.8544270833333333,41.5,2.6104118866498993e-13
+Method,Naming,Agentic-based - LLM-based,LLM-based,Agentic-based,64,32,25,32,7,0.0,0.228125,90.5,0.0006887349300086498
+Method,Readability,LLM-based - ES-based,ES-based,LLM-based,64,37,34,27,3,0.4,0.471875,35.0,5.129550117999315e-08
+Method,Readability,Agentic-based - ES-based,ES-based,Agentic-based,64,49,49,15,0,1.0,1.0182291666666667,0.0,3.552713678800501e-15
+Method,Readability,Agentic-based - LLM-based,LLM-based,Agentic-based,64,37,37,27,0,0.6,0.5463541666666667,0.0,1.4551915228366852e-11

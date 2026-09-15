@@ -1,0 +1,33 @@
+target_id,repo,filtered_es_line_pct,llm_line_pct,agentic_line_pct,best_variant,agentic_minus_es_pp,exact_ordering,population_status
+T01_DruidDataSource,alibaba/druid,22.133459,21.992481,22.791353,All three similar,0.657895,Agentic > ES > LLM,verified
+T02_CheckpointCoordinator,apache/flink,0.230947,0.230947,1.501155,Agentic-based,1.270208,Agentic > ES = LLM,verified
+T03_TableMetadata,apache/iceberg,18.505338,16.370107,16.607355,ES-based,-1.897983,ES > Agentic > LLM,verified
+T04_SubscriptionState,apache/kafka,23.897059,17.095588,18.382353,ES-based,-5.514706,ES > Agentic > LLM,verified
+T05_AsyncClientClass,aws/aws-sdk-java-v2,0.000000,0.000000,3.088803,Agentic-based,3.088803,Agentic > ES = LLM,verified
+T06_SyncClientClass,aws/aws-sdk-java-v2,0.497512,0.497512,4.477612,Agentic-based,3.980100,Agentic > ES = LLM,verified
+T07_ImplementationBridgeHelpers,azure/azure-sdk-for-java,17.495396,17.495396,28.913444,Agentic-based,11.418048,Agentic > ES = LLM,verified
+T08_DefaultExporterResourceProvider,camunda-cloud/zeebe,14.723926,14.723926,16.564417,Agentic-based,1.840491,Agentic > ES = LLM,verified
+T09_AdminServerUiAutoConfiguration,codecentric/spring-boot-admin,14.678899,14.678899,14.678899,All three similar,0.000000,ES = LLM = Agentic,verified
+T10_UiController,codecentric/spring-boot-admin,22.500000,20.000000,12.500000,ES-based,-10.000000,ES > LLM > Agentic,verified
+T11_DropwizardResourceConfig,dropwizard/dropwizard,1.234568,1.234568,1.851852,Agentic-based,0.617284,Agentic > ES = LLM,verified
+T12_ContextHandler,eclipse/jetty.project,35.339806,1.941748,9.514563,ES-based,-25.825243,ES > Agentic > LLM,verified
+T13_HttpConnection,eclipse/jetty.project,3.638814,0.269542,1.078167,ES-based,-2.560647,ES > Agentic > LLM,verified
+T14_ConfigXmlGenerator,hazelcast/hazelcast,4.729064,0.591133,2.266010,ES-based,-2.463054,ES > Agentic > LLM,verified
+T15_CloneVisitor,javaparser/javaparser,76.185102,71.444695,50.000000,ES-based = LLM-based,-26.185102,ES > LLM > Agentic,verified
+T16_DefaultApplicationContext,micronaut-projects/micronaut-core,13.068182,11.363636,6.534091,ES-based,-6.534091,ES > LLM > Agentic,verified
+T17_DefaultBeanContext,micronaut-projects/micronaut-core,34.531928,30.564166,28.518289,ES-based,-6.013639,ES > LLM > Agentic,verified
+T18_Instrumenter,open-telemetry/opentelemetry-java-instrumentation,5.454545,5.454545,0.909091,ES-based = LLM-based,-4.545455,ES = LLM > Agentic,verified
+T19_JavaClientCodegen,openapitools/openapi-generator,8.321580,4.090268,4.936530,ES-based,-3.385049,ES > Agentic > LLM,verified
+T20_VertexLinker,opentripplanner/opentripplanner,13.468013,13.131313,34.006734,Agentic-based,20.538721,Agentic > ES > LLM,verified
+T21_DefaultTransitService,opentripplanner/opentripplanner,55.555556,51.111111,50.222222,All three similar,-5.333333,ES > LLM > Agentic,verified
+T22_ODocument,orientechnologies/orientdb,0.404858,0.404858,1.966455,Agentic-based,1.561596,Agentic > ES = LLM,verified
+T23_OMatchStatement,orientechnologies/orientdb,54.328358,54.328358,60.000000,All three similar,5.671642,Agentic > ES = LLM,verified
+T24_PmdAnalysis,pmd/pmd,11.111111,3.864734,4.347826,ES-based,-6.763285,ES > Agentic > LLM,verified
+T25_QuteProcessor,quarkusio/quarkus,23.439049,22.348860,6.095144,ES-based = LLM-based,-17.343905,ES > LLM > Agentic,verified
+T26_ServerMain,questdb/questdb,2.597403,2.597403,7.792208,Agentic-based,5.194805,Agentic > ES = LLM,verified
+T27_Operators,reactor/reactor-core,0.313152,0.104384,0.835073,Agentic-based,0.521921,Agentic > ES > LLM,verified
+T28_Subscription,real-logic/aeron,17.857143,17.857143,30.000000,Agentic-based,12.142857,Agentic > ES = LLM,verified
+T29_AeronCluster,real-logic/aeron,13.324176,11.263736,11.401099,ES-based,-1.923077,ES > Agentic > LLM,verified
+T30_FileConfiguration,seata/seata,7.692308,8.791209,6.593407,LLM-based,-1.098901,LLM > ES > Agentic,verified
+T31_JadxDecompiler,skylot/jadx,17.079890,1.377410,16.804408,ES-based = Agentic-based,-0.275482,ES > Agentic > LLM,verified
+T32_ClassGen,skylot/jadx,1.750973,1.750973,1.556420,ES-based = LLM-based,-0.194553,ES = LLM > Agentic,verified

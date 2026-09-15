@@ -1,0 +1,3 @@
+interface:
+  display_name: "IntegrateMe Pipeline"
+  short_description: "Compile tests and collect coverage with IntegrateMe"

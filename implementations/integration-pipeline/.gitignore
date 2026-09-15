@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtualenv and local config
+.env/
+local.env
+
+# javac arg files
+javac.*.args
+
+# Metrics-tool scratch output (PMD report, JaCoCo source index, test scratch dirs)
+index.html
+source-location
+target/
+test-dir/
+logs/
+.jqwik-database
+
+*.exec
+*.log
+
+# macOS
+.DS_Store
+
+# Build and run scratch now lives in workspace/pipeline-{build,tmp}; see
+# src/core/layout.py. These two remain so a stray local run does not get
+# committed if someone overrides the roots back to the pipeline directory.
+build/
+tmp/

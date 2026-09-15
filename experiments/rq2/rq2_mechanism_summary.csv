@@ -1,0 +1,38 @@
+claim,value,detail
+ES-based files scanned,32,
+  ...declaring an instance field,0,
+  ...declaring @Before/@After,0,current ES/LLM/Agentic counts
+  ...using fully-qualified locals,27,current ES/LLM/Agentic counts
+LLM-based files scanned,32,
+  ...declaring an instance field,2,
+  ...declaring @Before/@After,2,current ES/LLM/Agentic counts
+  ...using fully-qualified locals,0,current ES/LLM/Agentic counts
+Agentic-based files scanned,32,
+  ...declaring an instance field,6,
+  ...declaring @Before/@After,10,current ES/LLM/Agentic counts
+  ...using fully-qualified locals,0,current ES/LLM/Agentic counts
+targets compared,32,
+ES-based using JUnit assertions,27,
+host suites using a non-JUnit assertion family,22,
+ES-based matching host assertion-family set,9,
+LLM-based matching host assertion-family set,10,
+Agentic-based matching host assertion-family set,21,
+targets with ES/Agentic naming comparison,32,
+  median delta style,+0.000,improved on 14/32
+  median delta clarity,+0.120,improved on 28/32
+"total smells/test, ES-based",3.941,
+"total smells/test, Agentic-based",1.777,
+total reduction,2.164,
+  lazy_test,0.750,35% of the reduction
+  exception_catching_throwing,0.715,33% of the reduction
+  magic_number_test,0.580,27% of the reduction
+  top three combined,94%,
+  duplicate_assert (rises),+0.001,
+  assertion_roulette (rises),+0.002,
+  mystery_guest (rises),+0.003,
+  resource_optimism (rises),+0.019,
+  unknown_test (rises),+0.030,
+  conditional_test_logic (rises),+0.043,
+  ignoredtest (rises),+0.052,
+  ES-based exception_catching_throwing distinct values,[1.0],"constant 1.000 => structural, not incidental"
+  ES-based magic_number_test distinct values,[1.0],"constant 1.000 => structural, not incidental"

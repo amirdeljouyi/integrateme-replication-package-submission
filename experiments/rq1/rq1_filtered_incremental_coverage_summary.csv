@@ -1,0 +1,4 @@
+variant,population_n,verified_n,zero_retained_n,excluded_n,median_incremental_line_percentage,q1_incremental_line_percentage,q3_incremental_line_percentage
+ES,32,32,0,0,13.396094646094646,3.3784611614800295,22.225093984962406
+LLM,32,32,0,0,10.02747252747253,1.3416998265483113,17.585832675611684
+Agentic,32,32,0,0,8.653385449501954,2.8831047796565037,19.484603051747015

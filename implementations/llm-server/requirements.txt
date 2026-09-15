@@ -1,0 +1,17 @@
+strawberry-graphql[debug-server]==0.219.2
+
+requests~=2.31.0
+bleu~=0.3
+transformers~=4.35.2
+ollama~=0.1.2
+qlient~=1.0.0
+javalang~=0.13.0
+gql~=3.5.0
+codebleu~=0.7.0
+utils~=1.0.2
+antlr4-python3-runtime~=4.13.1
+openai~=2.11.0
+python-dotenv~=1.0.1
+fastapi~=0.115.11
+lizard~=1.19.0
+tree-sitter-java~=0.21.0

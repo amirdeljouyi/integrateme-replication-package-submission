@@ -1,0 +1,53 @@
+scope,key,value,detail
+category,ES-based,11,34.4% of 32
+category,LLM-based,1,3.1% of 32
+category,Agentic-based,11,34.4% of 32
+category,ES-based = LLM-based,4,12.5% of 32
+category,ES-based = Agentic-based,1,3.1% of 32
+category,LLM-based = Agentic-based,0,0.0% of 32
+category,All three similar,4,12.5% of 32
+best_or_tied,ES-based,20,"62.5% of 32; ties counted for each variant, so these overlap"
+best_or_tied,LLM-based,9,"28.1% of 32; ties counted for each variant, so these overlap"
+best_or_tied,Agentic-based,16,"50.0% of 32; ties counted for each variant, so these overlap"
+attrition_vs_change,LLM-based,0.681,Spearman rho between the share of ES tests the variant retains and its coverage change against ES (n=32)
+improved_without_more_tests,LLM-based,0,targets where the variant improves on filtered ES while adopting no more tests than filtered ES
+attrition_vs_change,Agentic-based,0.584,Spearman rho between the share of ES tests the variant retains and its coverage change against ES (n=32)
+improved_without_more_tests,Agentic-based,8,targets where the variant improves on filtered ES while adopting no more tests than filtered ES
+gap_closed_median,ES-based,39.167240,median % of the manual suite's uncovered lines that the retained variant covers (n=32)
+gap_closed_median,LLM-based,23.178383,median % of the manual suite's uncovered lines that the retained variant covers (n=32)
+gap_closed_median,Agentic-based,35.714286,median % of the manual suite's uncovered lines that the retained variant covers (n=32)
+sensitivity@0.00,ES-based,15,
+sensitivity@0.00,LLM-based,1,
+sensitivity@0.00,Agentic-based,13,
+sensitivity@0.00,ES-based = LLM-based,2,
+sensitivity@0.00,ES-based = Agentic-based,0,
+sensitivity@0.00,LLM-based = Agentic-based,0,
+sensitivity@0.00,All three similar,1,
+sensitivity@0.05,ES-based,13,
+sensitivity@0.05,LLM-based,1,
+sensitivity@0.05,Agentic-based,12,
+sensitivity@0.05,ES-based = LLM-based,3,
+sensitivity@0.05,ES-based = Agentic-based,1,
+sensitivity@0.05,LLM-based = Agentic-based,0,
+sensitivity@0.05,All three similar,2,
+sensitivity@0.10,ES-based,11,
+sensitivity@0.10,LLM-based,1,
+sensitivity@0.10,Agentic-based,11,
+sensitivity@0.10,ES-based = LLM-based,4,
+sensitivity@0.10,ES-based = Agentic-based,1,
+sensitivity@0.10,LLM-based = Agentic-based,0,
+sensitivity@0.10,All three similar,4,
+sensitivity@0.15,ES-based,6,
+sensitivity@0.15,LLM-based,0,
+sensitivity@0.15,Agentic-based,10,
+sensitivity@0.15,ES-based = LLM-based,7,
+sensitivity@0.15,ES-based = Agentic-based,2,
+sensitivity@0.15,LLM-based = Agentic-based,0,
+sensitivity@0.15,All three similar,7,
+exact_ordering,Agentic > ES = LLM,10,
+exact_ordering,ES > Agentic > LLM,9,
+exact_ordering,ES > LLM > Agentic,6,
+exact_ordering,Agentic > ES > LLM,3,
+exact_ordering,ES = LLM > Agentic,2,
+exact_ordering,ES = LLM = Agentic,1,
+exact_ordering,LLM > ES > Agentic,1,

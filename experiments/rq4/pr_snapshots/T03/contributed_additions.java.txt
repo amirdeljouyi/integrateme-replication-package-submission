@@ -1,0 +1,72 @@
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.apache.iceberg.util.SerializableSupplier;
+
+  @Test
+  public void testSetSnapshotsSupplierPreservesMetadata() {
+    TableMetadata base =
+        TableMetadata.newTableMetadata(
+            ManifestFile.schema(),
+            PartitionSpec.unpartitioned(),
+            SortOrder.unsorted().toString(),
+            Collections.emptyMap());
+
+    AtomicBoolean supplierInvoked = new AtomicBoolean(false);
+    SerializableSupplier<List<Snapshot>> snapshotsSupplier =
+        () -> {
+          supplierInvoked.set(true);
+          return new ArrayList<>();
+        };
+
+    TableMetadata builtWithSupplier =
+        TableMetadata.buildFrom(base).setSnapshotsSupplier(snapshotsSupplier).build();
+
+    TableMetadata.buildFrom(builtWithSupplier);
+
+    assertThat(supplierInvoked.get()).isTrue();
+    assertThat(builtWithSupplier)
+        .extracting(
+            TableMetadata::lastAssignedPartitionId,
+            TableMetadata::formatVersion,
+            TableMetadata::defaultSpecId,
+            TableMetadata::nextSequenceNumber)
+        .containsExactly(
+            base.lastAssignedPartitionId(),
+            base.formatVersion(),
+            base.defaultSpecId(),
+            base.nextSequenceNumber());
+  }
+
+  @Test
+  public void testBuildReplacementPreservesMetadataLogAndDefaults() {
+    Schema schema = ManifestFile.schema();
+    PartitionSpec spec = PartitionSpec.unpartitioned();
+    SortOrder sortOrder = SortOrder.unsorted();
+    Map<String, String> properties = Collections.emptyMap();
+    TableMetadata metadata =
+        TableMetadata.newTableMetadata(schema, spec, sortOrder, "table-location", properties);
+    TableMetadata built =
+        TableMetadata.buildFrom(metadata)
+            .addSchema(schema)
+            .setPreviousFileLocation("previous-metadata-location")
+            .build();
+    TableMetadata replacement =
+        built.buildReplacement(schema, spec, sortOrder, "[nF", properties);
+
+    assertThat(metadata.defaultSortOrderId()).isEqualTo(0);
+    assertThat(built.previousFiles())
+        .hasSize(1)
+        .extracting(TableMetadata.MetadataLogEntry::file)
+        .containsExactly("previous-metadata-location");
+    assertThat(replacement)
+        .extracting(
+            TableMetadata::formatVersion,
+            TableMetadata::defaultSpecId,
+            TableMetadata::lastAssignedPartitionId,
+            TableMetadata::nextSequenceNumber)
+        .containsExactly(
+            built.formatVersion(),
+            built.defaultSpecId(),
+            built.lastAssignedPartitionId(),
+            built.nextSequenceNumber());
+  }

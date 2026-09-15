@@ -1,0 +1,41 @@
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.sameInstance;
+import net.sourceforge.pmd.lang.LanguagePropertyBundle;
+import net.sourceforge.pmd.renderers.CodeClimateRenderer;
+            ReportStats stats = pmd.runAndReturnStats();
+            assertEquals(0, stats.getNumErrors(), "Errors");
+            assertEquals(0, stats.getNumViolations(), "Violations");
+
+    @Test
+    void testConfigurationAppliesRenderer() {
+        PMDConfiguration config = new PMDConfiguration();
+        config.setReportFormat("codeclimate");
+
+        try (PmdAnalysis pmd = PmdAnalysis.create(config)) {
+            assertThat(pmd.renderers(), hasSize(1));
+            assertThat(pmd.renderers().get(0), instanceOf(CodeClimateRenderer.class));
+        }
+    }
+
+    @Test
+    void testConfigurationUsesRelativizeRootForDisplayName() {
+        PMDConfiguration config = new PMDConfiguration();
+        config.addRelativizeRoot(Paths.get("src", "test", "resources"));
+
+        try (PmdAnalysis pmd = PmdAnalysis.create(config)) {
+            FileId sourceFile = FileId.fromPath(Paths.get("src", "test", "resources", "sample-source", "dummy", "foo.txt"));
+            assertThat(pmd.fileNameRenderer().getDisplayName(sourceFile),
+                       equalTo(Paths.get("sample-source", "dummy", "foo.txt").toString()));
+        }
+    }
+
+    @Test
+    void testConfigurationUsesConfiguredLanguageProperties() {
+        PMDConfiguration config = new PMDConfiguration();
+        Language language = DummyLanguageModule.getInstance();
+        LanguagePropertyBundle configuredBundle = config.getLanguageProperties(language);
+
+        try (PmdAnalysis pmd = PmdAnalysis.create(config)) {
+            assertThat(pmd.getLanguageProperties(language), sameInstance(configuredBundle));
+        }
+    }
