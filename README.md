@@ -1,74 +1,133 @@
 # IntegrateMe Replication Package
 
-This repository is the compact replication package for reviewers of the IntegrateMe
-study. It contains the implementation of the toolchain, the study dataset, and the final
-results for all four research questions.
+IntegrateMe adapts automatically generated Java tests to the test suite they will join.
+Starting from EvoSuite-generated tests, it retains tests that add coverage and supports
+two integration paths: a prompted LLM and a repository-aware coding agent. The study
+compares these LLM-based and Agentic-based variants with the coverage-filtered ES-based
+baseline.
 
-Reviewers can use the package to:
+This package contains the final results for 32 target classes, the data used in the
+study, the submitted and observed snapshots of 32 pull requests, and the implementation
+of the IntegrateMe toolchain.
 
-1. inspect the final reported results;
-2. reuse or test an individual implementation; and
-3. execute individual pipeline stages in a newly created workspace.
+## Artifact overview
 
-## Repository layout
-
-| Path | Contents |
+| Directory | Contents |
 | --- | --- |
 | [`data/`](data/) | Selected classes under test, repository revisions, and collected generated and existing-suite tests. |
-| [`experiments/rq1/`](experiments/rq1/) | Final incremental-coverage results. |
-| [`experiments/rq2/`](experiments/rq2/) | Final integration-quality results, metric sensitivities, and tsDetect output. |
-| [`experiments/rq3/`](experiments/rq3/) | Final human-evaluation ratings, summaries, paired comparisons, and reliability results. |
-| [`experiments/rq4/`](experiments/rq4/) | Final pull-request outcomes and standardized coverage results. |
-| [`experiments/rq4/pr_snapshots/`](experiments/rq4/pr_snapshots/) | Submitted and observed contribution snapshots for the 32 study targets. |
-| [`implementations/coverage-filter/`](implementations/coverage-filter/) | Java coverage filtering, prioritization, and top-N reduction tool. |
-| [`implementations/dataset-collection/`](implementations/dataset-collection/) | Python repository-enrichment and class-selection tools. |
-| [`implementations/llm-server/`](implementations/llm-server/) | GraphQL service used to send integration prompts to an LLM. |
-| [`implementations/integration-pipeline/`](implementations/integration-pipeline/) | Python orchestration for compilation, coverage, filtering, integration, comparison, and contribution preparation. |
+| [`experiments/rq1/`](experiments/rq1/) | Incremental line-coverage results. |
+| [`experiments/rq2/`](experiments/rq2/) | Integratedness metrics, sensitivity results, mechanism summaries, and test-smell measurements. |
+| [`experiments/rq3/`](experiments/rq3/) | Human-evaluation ratings, aggregate results, paired comparisons, and inter-rater reliability. |
+| [`experiments/rq4/`](experiments/rq4/) | Pull-request outcomes, standardized coverage results, and contribution manifests. |
+| [`implementations/`](implementations/) | Dataset collection, coverage filtering, LLM service, and integration-pipeline source code. |
 
-## Reviewer quick start
+## Results by research question
 
-All final tabular results are CSV or JSON files directly inside the corresponding RQ
-directory. They can be opened with any spreadsheet or statistical package; no pipeline
-execution is needed.
+The result files are CSV or JSON and can be inspected directly without installing the
+implementations.
 
-| RQ | Study focus | Useful starting files |
-| --- | --- | --- |
-| RQ1 | Incremental coverage of the ES-based, LLM-based, and Agentic-based variants | [`rq1_aggregate_summary.csv`](experiments/rq1/rq1_aggregate_summary.csv), [`rq1_filtered_incremental_coverage.csv`](experiments/rq1/rq1_filtered_incremental_coverage.csv), and [`rq1_pairwise_coverage.csv`](experiments/rq1/rq1_pairwise_coverage.csv) |
-| RQ2 | Integration quality and mechanisms | [`rq2_metrics_clean.csv`](experiments/rq2/rq2_metrics_clean.csv), [`rq2_primary_comparisons.csv`](experiments/rq2/rq2_primary_comparisons.csv), and [`rq2_mechanism_summary.csv`](experiments/rq2/rq2_mechanism_summary.csv) |
-| RQ3 | Human evaluation | [`rq3_ratings_long.csv`](experiments/rq3/rq3_ratings_long.csv), [`rq3_variant_summary.csv`](experiments/rq3/rq3_variant_summary.csv), [`rq3_paired_comparisons.csv`](experiments/rq3/rq3_paired_comparisons.csv), and [`rq3_reliability.csv`](experiments/rq3/rq3_reliability.csv) |
-| RQ4 | Contribution outcomes and coverage | [`pr_status.csv`](experiments/rq4/pr_status.csv), [`rq4_coverage_aggregate.csv`](experiments/rq4/rq4_coverage_aggregate.csv), [`rq4_per_pr_coverage.csv`](experiments/rq4/rq4_per_pr_coverage.csv), and [`pr_snapshot_manifest.csv`](experiments/rq4/pr_snapshot_manifest.csv) |
+### RQ1: Incremental line coverage
 
-For a quick command-line inspection:
+> How much incremental line coverage do the integrated tests add to the existing test
+> suite?
+
+- [`rq1_filtered_incremental_coverage.csv`](experiments/rq1/rq1_filtered_incremental_coverage.csv)
+  contains the per-target measurements for the three variants.
+- [`rq1_aggregate_summary.csv`](experiments/rq1/rq1_aggregate_summary.csv) contains the
+  aggregate coverage and retained-method summaries.
+- [`rq1_pairwise_coverage.csv`](experiments/rq1/rq1_pairwise_coverage.csv) contains the
+  paired variant comparisons.
+- [`rq1_standalone_coverage.csv`](experiments/rq1/rq1_standalone_coverage.csv) contains
+  the existing-suite and standalone EvoSuite measurements.
+- [`rq1_variant_ordering.csv`](experiments/rq1/rq1_variant_ordering.csv) and
+  [`rq1_ordering_summary.csv`](experiments/rq1/rq1_ordering_summary.csv) describe the
+  per-target ordering of the variants.
+
+### RQ2: Fit with the target project
+
+> How well do the integrated tests fit the target project, as measured by our
+> integratedness metrics?
+
+- [`rq2_metrics_clean.csv`](experiments/rq2/rq2_metrics_clean.csv) contains the
+  per-target closeness, conformance, and test-smell measurements.
+- [`rq2_primary_comparisons.csv`](experiments/rq2/rq2_primary_comparisons.csv) contains
+  the primary paired comparisons.
+- [`rq2_mechanism_summary.csv`](experiments/rq2/rq2_mechanism_summary.csv) summarizes the
+  mechanisms observed in the test artifacts.
+- [`rq2_closeness_sensitivity.csv`](experiments/rq2/rq2_closeness_sensitivity.csv) and
+  [`rq2_metric_sensitivity.csv`](experiments/rq2/rq2_metric_sensitivity.csv) contain the
+  sensitivity analyses.
+- [`rq2_human_anchor_summary.csv`](experiments/rq2/rq2_human_anchor_summary.csv) contains
+  the human-anchor calibration summary.
+- [`tsdetect_results.csv`](experiments/rq2/tsdetect_results.csv) contains the raw
+  tsDetect measurements used in the test-smell analysis.
+
+### RQ3: Human evaluation
+
+> How do the individual components of the integrated tests perform in terms of clarity,
+> naturalness, structure, and integration quality, as evaluated by human assessors?
+
+- [`rq3_ratings_long.csv`](experiments/rq3/rq3_ratings_long.csv) contains the individual
+  ratings in long format.
+- [`rq3_variant_summary.csv`](experiments/rq3/rq3_variant_summary.csv) contains the
+  per-variant summaries for every criterion.
+- [`rq3_paired_comparisons.csv`](experiments/rq3/rq3_paired_comparisons.csv) contains the
+  paired statistical comparisons.
+- [`rq3_reliability.csv`](experiments/rq3/rq3_reliability.csv) contains ordinal
+  Krippendorff's alpha and bootstrap confidence intervals.
+
+### RQ4: Contribution outcomes
+
+> How do maintainers decide whether to merge submitted PRs, and what factors influence
+> their decisions?
+
+- [`pr_status.csv`](experiments/rq4/pr_status.csv) records the state of each pull request.
+- [`rq4_per_pr_coverage.csv`](experiments/rq4/rq4_per_pr_coverage.csv) contains the
+  before-and-after coverage measurement for every contribution.
+- [`rq4_coverage_aggregate.csv`](experiments/rq4/rq4_coverage_aggregate.csv) contains the
+  aggregate line- and branch-coverage results.
+- [`pr_snapshot_manifest.csv`](experiments/rq4/pr_snapshot_manifest.csv) maps each target
+  and pull request to its recorded revisions and snapshot files.
+- [`pr_snapshots/`](experiments/rq4/pr_snapshots/) contains the base, submitted, and
+  observed Java files plus the contribution diff for each target.
+
+## Getting the package
 
 ```bash
 git clone https://github.com/amirdeljouyi/integrateme-replication-package-submission.git
 cd integrateme-replication-package-submission
+```
 
-# Preview one aggregate result file.
-python -c "import csv; print(*csv.DictReader(open('experiments/rq1/rq1_aggregate_summary.csv')), sep='\n')"
+List the final result files:
 
-# List the final result files.
+```bash
 find experiments -maxdepth 2 -type f | sort
 ```
 
-## Requirements
+Preview a result with Python's standard library:
 
-- Git
-- Python 3.12 and `venv` for the Python components
-- JDK 17 for the integration pipeline
-- Maven 3.9 or later to rebuild the coverage-filter jar
-- JDK 21 for target projects whose Maven or Gradle builds require it
-- A GitHub token for live dataset collection
-- An LLM provider credential or a local Ollama installation for LLM-backed integration
+```bash
+python -c "import csv; print(*csv.DictReader(open('experiments/rq1/rq1_aggregate_summary.csv')), sep='\n')"
+```
 
-Create separate virtual environments for the Python components because their dependency
-sets serve different purposes.
+## Software requirements
 
-## Using the dataset-collection tools
+The result files require no specialized software. Running the implementations requires:
 
-These scripts query GitHub, enrich repository metadata, detect Java versions, and select
-active classes with corresponding tests. Run them from their own directory because their
-input paths are relative to that directory.
+- Python 3.12 and `venv`;
+- JDK 17 for the coverage and integration tools;
+- Maven 3.9 or later to build the coverage-filter jar;
+- JDK 21 for target projects that require it;
+- a GitHub token for live repository collection; and
+- an OpenAI or Hugging Face credential, or a local Ollama model, for LLM-backed steps.
+
+Use a separate Python virtual environment for each Python component.
+
+## Dataset-collection implementation
+
+[`implementations/dataset-collection/`](implementations/dataset-collection/) contains the
+scripts used to enrich GitHub repository metadata, detect Java versions, and select
+active classes that have corresponding tests.
 
 ```bash
 cd implementations/dataset-collection
@@ -76,44 +135,44 @@ python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 
-# Use a fine-grained token with read-only access to public repository metadata.
 export GITHUB_TOKEN=your_token_here
-
 python __main__.py
 python recognize_java.py
 python select_cut_classes.py
 ```
 
-The stored CSV inputs let you inspect and reuse these stages. Configuration constants
-and output schemas are documented in the
-[`dataset-collection README`](implementations/dataset-collection/README.md).
+Run these commands from the component directory because its input and output paths are
+relative to that directory. See the
+[`dataset-collection README`](implementations/dataset-collection/README.md) for the input
+files, selection criteria, and output schemas.
 
-## Using the coverage-filter tool
+## Coverage-filter implementation
 
-The Java tool measures candidate test methods against an existing-suite baseline, keeps
-methods that add coverage, ranks them by coverage contribution, and can emit a reduced
-top-N test class.
+[`implementations/coverage-filter/`](implementations/coverage-filter/) contains the Java
+tool that measures candidate test methods against the existing-suite baseline, removes
+methods without an additional coverage contribution, ranks the retained methods, and
+generates reduced top-N test classes.
+
+Build and test it with:
 
 ```bash
 cd implementations/coverage-filter
+mvn test
 mvn -DskipTests package
 ```
 
-The shaded jar is written to
-`target/coverage-filter-1.0-SNAPSHOT.jar`. Its two main entry points are:
+The shaded jar is written to `target/coverage-filter-1.0-SNAPSHOT.jar`. The command-line
+entry points are `app.CoverageFilterApp` for coverage comparison and filtering, and
+`app.GenerateReducedAgtTestApp` for top-N reduction. See the
+[`coverage-filter README`](implementations/coverage-filter/README.md) for their argument
+order and complete examples.
 
-- `app.CoverageFilterApp` for class-level comparison or incremental method filtering;
-- `app.GenerateReducedAgtTestApp` for top-N source reduction.
+## LLM-server implementation
 
-Both commands need compiled test classes, the system-under-test classes or fat jar, the
-JaCoCo agent, and the runtime dependency directory. Their argument order and complete
-examples are in the [`coverage-filter README`](implementations/coverage-filter/README.md).
-
-## Using the LLM server
-
-The LLM server exposes a Strawberry GraphQL endpoint at `/graphql`. It routes model names
-beginning with `gpt-`, `chatgpt-`, or `o` to OpenAI, names ending in `-hf` to a Hugging
-Face endpoint, and other names to a local Ollama server.
+[`implementations/llm-server/`](implementations/llm-server/) provides the GraphQL service
+used by the LLM-based integration path. The service is available at `/graphql` and
+accepts `prompt_text`, `prompt_type`, and `additional_param` as defined in
+[`schema.py`](implementations/llm-server/schema.py).
 
 ```bash
 cd implementations/llm-server
@@ -121,34 +180,22 @@ python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 
-# OpenAI example. Keep credentials in the environment; never commit them.
 export OPENAI_API_KEY=your_key_here
 python -m run_server --model gpt-5 --host 127.0.0.1 --port 8000
 ```
 
-Alternative provider configuration:
+Model names beginning with `gpt-`, `chatgpt-`, or `o` use OpenAI; names ending in `-hf`
+use the configured Hugging Face endpoint; other names use a local Ollama server. See the
+[`LLM-server README`](implementations/llm-server/README.md) for component details.
 
-```bash
-# Hugging Face: the model name must end in -hf.
-export HF_KEY=your_key_here
-export HF_URL=https://your-inference-endpoint.example
-python -m run_server --model your-model-hf --host 127.0.0.1 --port 8000
+## Integration-pipeline implementation
 
-# Ollama: start Ollama first, then use its local model name.
-python -m run_server --model codellama:7b-instruct --host 127.0.0.1 --port 8000
-```
+[`implementations/integration-pipeline/`](implementations/integration-pipeline/)
+orchestrates repository cloning, target builds, generated-test collection, compilation,
+JaCoCo measurement, coverage filtering, LLM-based integration, metric comparison, and
+contribution preparation.
 
-The server accepts the `Prompt` fields `prompt_text`, `prompt_type`, and
-`additional_param`; see [`schema.py`](implementations/llm-server/schema.py) and the
-[`LLM-server README`](implementations/llm-server/README.md).
-
-## Using the integration pipeline
-
-The integration pipeline orchestrates repository cloning, target builds, generated-test
-collection, compilation, JaCoCo measurement, coverage filtering, LLM-based integration,
-metric comparison, and contribution preparation.
-
-Set up and verify the Python CLI first:
+Set up the command-line interface and run its unit tests:
 
 ```bash
 cd implementations/integration-pipeline
@@ -160,9 +207,9 @@ python -m src --help
 python -m unittest discover -s tests -v
 ```
 
-The main launcher uses the package-level `data/` directory and creates a new
-package-level `workspace/` for cloned repositories, builds, temporary files, and
-intermediate pipeline outputs:
+The launcher reads the package-level data and creates a package-level `workspace/` for
+repositories, builds, logs, and intermediate outputs. Start by cloning the target
+repositories and building their fat jars:
 
 ```bash
 ./run_integration_pipeline.sh \
@@ -176,16 +223,14 @@ intermediate pipeline outputs:
   fatjar
 ```
 
-Continue with a specific command instead of `clone` or `fatjar`, for example `compile`,
-`run`, `filter`, `reduce`, `llm all`, `llm agent`, `coverage incremental-target-cut`, or
-`coverage pr-snapshots`. To rerun the RQ4 snapshot measurement, use:
+The remaining commands cover compilation, test execution, filtering, reduction, LLM and
+agent integration, metric comparison, and coverage measurement. For example, the RQ4
+snapshot measurement uses:
 
 ```bash
 python -m src coverage pr-snapshots \
   --manifest ../../experiments/rq4/pr_snapshot_manifest.csv
 ```
 
-These operations can be expensive: they clone and build third-party repositories, call
-external model services, and write intermediate files under `workspace/`. See the
-[`integration-pipeline README`](implementations/integration-pipeline/README.md) for the
-full command sequence, configuration flags, and output paths.
+See the [`integration-pipeline README`](implementations/integration-pipeline/README.md)
+for the complete command sequence and configuration options.
