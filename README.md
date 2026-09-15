@@ -1,21 +1,14 @@
 # IntegrateMe Replication Package
 
-This repository is the compact replication package for the IntegrateMe study. It
-contains the implementation of the toolchain, the study dataset, and the final results
-for all four research questions.
+This repository is the compact replication package for reviewers of the IntegrateMe
+study. It contains the implementation of the toolchain, the study dataset, and the final
+results for all four research questions.
 
-The package is intended for three uses:
+Reviewers can use the package to:
 
 1. inspect the final reported results;
 2. reuse or test an individual implementation; and
-3. reproduce selected pipeline stages with a newly created workspace.
-
-It is a submission snapshot, not a byte-for-byte archive of every experimental run.
-Intermediate outputs, validation and legacy directories, analysis and chart-generation
-scripts, notebooks, workspaces, and internal project documentation are deliberately
-excluded. Consequently, the final tables can be inspected directly, while an exact
-end-to-end regeneration requires the archived inputs and intermediate state used by the
-authors.
+3. execute individual pipeline stages in a newly created workspace.
 
 ## Repository layout
 
@@ -32,7 +25,7 @@ authors.
 | [`implementations/llm-server/`](implementations/llm-server/) | GraphQL service used to send integration prompts to an LLM. |
 | [`implementations/integration-pipeline/`](implementations/integration-pipeline/) | Python orchestration for compilation, coverage, filtering, integration, comparison, and contribution preparation. |
 
-## Inspecting the final results
+## Reviewer quick start
 
 All final tabular results are CSV or JSON files directly inside the corresponding RQ
 directory. They can be opened with any spreadsheet or statistical package; no pipeline
@@ -91,10 +84,8 @@ python recognize_java.py
 python select_cut_classes.py
 ```
 
-The stored CSV inputs let you inspect and reuse these stages. The ranking notebook used
-between enrichment and class selection is intentionally excluded from this compact
-package, so this directory alone does not recreate the original ranked project list from
-scratch. Configuration constants and output schemas are documented in the
+The stored CSV inputs let you inspect and reuse these stages. Configuration constants
+and output schemas are documented in the
 [`dataset-collection README`](implementations/dataset-collection/README.md).
 
 ## Using the coverage-filter tool
@@ -195,45 +186,6 @@ python -m src coverage pr-snapshots \
 ```
 
 These operations can be expensive: they clone and build third-party repositories, call
-external model services, and write intermediate files under `workspace/`. The workspace
-and pipeline outputs are intentionally not part of this repository. See the
+external model services, and write intermediate files under `workspace/`. See the
 [`integration-pipeline README`](implementations/integration-pipeline/README.md) for the
 full command sequence, configuration flags, and output paths.
-
-## Reproducibility boundary
-
-The final result files and the implementation source are archival artifacts. The
-following omitted material is needed for an exact end-to-end rerun of the reported study:
-
-- intermediate pipeline outputs and compiled target workspaces;
-- validation and legacy experiment material;
-- analysis and chart-generation scripts;
-- notebooks and internal operational documentation; and
-- external repository and model-service state that may change over time.
-
-Use the recorded revisions in [`data/repo_head_hashes.txt`](data/repo_head_hashes.txt)
-and the RQ4 snapshot manifest when reconstructing target repositories. Newly executed
-LLM or GitHub-dependent stages should be treated as a new run, not as a deterministic
-recreation of the archived results.
-
-## Release and Zenodo archiving
-
-GitHub releases provide a versioned source archive. To archive a release in Zenodo:
-
-1. sign in to Zenodo with GitHub and enable this repository in Zenodo's GitHub settings;
-2. publish a GitHub release from the version tag;
-3. wait for Zenodo to create the deposition, complete its metadata, and publish it; and
-4. add the resulting DOI badge and citation to this README in a follow-up release.
-
-Until a DOI is assigned, cite the GitHub release by repository name, version, release
-date, and release URL. The license for reuse should be selected explicitly by the
-authors in GitHub and Zenodo; this snapshot does not infer one.
-
-## Scope and privacy notes
-
-- API keys and GitHub tokens are read from environment variables and are not stored in
-  the repository.
-- The final RQ4 Java files include test fixtures and literal example credentials inherited
-  from upstream projects; these are research snapshots, not operational secrets.
-- Machine-specific absolute paths in generated test fixtures are replaced with neutral
-  `/path/to/` prefixes; these values are not required as local installation paths.
