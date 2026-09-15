@@ -1,14 +1,13 @@
 # IntegrateMe Replication Package
 
-IntegrateMe adapts automatically generated Java tests to the test suite they will join.
-Starting from EvoSuite-generated tests, it retains tests that add coverage and supports
-two integration paths: a prompted LLM and a repository-aware coding agent. The study
-compares these LLM-based and Agentic-based variants with the coverage-filtered ES-based
-baseline.
+IntegrateMe helps automatically generated Java tests fit into an existing test suite. It
+first keeps the EvoSuite tests that add coverage, then adapts them in one of two ways:
+with a prompted LLM or with a repository-aware coding agent. We compare these LLM-based
+and Agentic-based tests with the coverage-filtered ES-based tests.
 
-This package contains the final results for 32 target classes, the data used in the
-study, the submitted and observed snapshots of 32 pull requests, and the implementation
-of the IntegrateMe toolchain.
+This repository brings together the implementation, study data, and final results for
+32 target classes. It also includes the submitted and observed versions of the 32 pull
+requests used in the contribution study.
 
 ## Artifact overview
 
@@ -23,22 +22,23 @@ of the IntegrateMe toolchain.
 
 ## Results by research question
 
-The result files are CSV or JSON and can be inspected directly without installing the
-implementations.
+The results are stored as CSV and JSON files. You can open them directly; the
+implementations do not need to be installed first.
 
 ### RQ1: Incremental line coverage
 
 > How much incremental line coverage do the integrated tests add to the existing test
 > suite?
 
-- [`rq1_filtered_incremental_coverage.csv`](experiments/rq1/rq1_filtered_incremental_coverage.csv)
-  contains the per-target measurements for the three variants.
-- [`rq1_aggregate_summary.csv`](experiments/rq1/rq1_aggregate_summary.csv) contains the
-  aggregate coverage and retained-method summaries.
-- [`rq1_pairwise_coverage.csv`](experiments/rq1/rq1_pairwise_coverage.csv) contains the
-  paired variant comparisons.
-- [`rq1_standalone_coverage.csv`](experiments/rq1/rq1_standalone_coverage.csv) contains
-  the existing-suite and standalone EvoSuite measurements.
+- Start with
+  [`rq1_filtered_incremental_coverage.csv`](experiments/rq1/rq1_filtered_incremental_coverage.csv)
+  for the three variants' measurements on each target.
+- [`rq1_aggregate_summary.csv`](experiments/rq1/rq1_aggregate_summary.csv) summarizes
+  coverage and retained methods across all targets.
+- [`rq1_pairwise_coverage.csv`](experiments/rq1/rq1_pairwise_coverage.csv) reports the
+  paired comparisons between variants.
+- [`rq1_standalone_coverage.csv`](experiments/rq1/rq1_standalone_coverage.csv) reports
+  coverage for the existing suite and standalone EvoSuite suite.
 - [`rq1_variant_ordering.csv`](experiments/rq1/rq1_variant_ordering.csv) and
   [`rq1_ordering_summary.csv`](experiments/rq1/rq1_ordering_summary.csv) describe the
   per-target ordering of the variants.
@@ -48,44 +48,44 @@ implementations.
 > How well do the integrated tests fit the target project, as measured by our
 > integratedness metrics?
 
-- [`rq2_metrics_clean.csv`](experiments/rq2/rq2_metrics_clean.csv) contains the
-  per-target closeness, conformance, and test-smell measurements.
-- [`rq2_primary_comparisons.csv`](experiments/rq2/rq2_primary_comparisons.csv) contains
+- Start with [`rq2_metrics_clean.csv`](experiments/rq2/rq2_metrics_clean.csv) for the
+  closeness, conformance, and test-smell measurements on each target.
+- [`rq2_primary_comparisons.csv`](experiments/rq2/rq2_primary_comparisons.csv) reports
   the primary paired comparisons.
 - [`rq2_mechanism_summary.csv`](experiments/rq2/rq2_mechanism_summary.csv) summarizes the
   mechanisms observed in the test artifacts.
-- [`rq2_closeness_sensitivity.csv`](experiments/rq2/rq2_closeness_sensitivity.csv) and
-  [`rq2_metric_sensitivity.csv`](experiments/rq2/rq2_metric_sensitivity.csv) contain the
-  sensitivity analyses.
-- [`rq2_human_anchor_summary.csv`](experiments/rq2/rq2_human_anchor_summary.csv) contains
-  the human-anchor calibration summary.
-- [`tsdetect_results.csv`](experiments/rq2/tsdetect_results.csv) contains the raw
-  tsDetect measurements used in the test-smell analysis.
+- The sensitivity analyses are in
+  [`rq2_closeness_sensitivity.csv`](experiments/rq2/rq2_closeness_sensitivity.csv) and
+  [`rq2_metric_sensitivity.csv`](experiments/rq2/rq2_metric_sensitivity.csv).
+- [`rq2_human_anchor_summary.csv`](experiments/rq2/rq2_human_anchor_summary.csv) reports
+  the human-anchor calibration, while
+  [`tsdetect_results.csv`](experiments/rq2/tsdetect_results.csv) provides the underlying
+  tsDetect measurements.
 
 ### RQ3: Human evaluation
 
 > How do the individual components of the integrated tests perform in terms of clarity,
 > naturalness, structure, and integration quality, as evaluated by human assessors?
 
-- [`rq3_ratings_long.csv`](experiments/rq3/rq3_ratings_long.csv) contains the individual
-  ratings in long format.
-- [`rq3_variant_summary.csv`](experiments/rq3/rq3_variant_summary.csv) contains the
-  per-variant summaries for every criterion.
-- [`rq3_paired_comparisons.csv`](experiments/rq3/rq3_paired_comparisons.csv) contains the
+- Start with [`rq3_ratings_long.csv`](experiments/rq3/rq3_ratings_long.csv) for the
+  individual ratings.
+- [`rq3_variant_summary.csv`](experiments/rq3/rq3_variant_summary.csv) summarizes each
+  criterion by variant.
+- [`rq3_paired_comparisons.csv`](experiments/rq3/rq3_paired_comparisons.csv) reports the
   paired statistical comparisons.
-- [`rq3_reliability.csv`](experiments/rq3/rq3_reliability.csv) contains ordinal
-  Krippendorff's alpha and bootstrap confidence intervals.
+- [`rq3_reliability.csv`](experiments/rq3/rq3_reliability.csv) reports ordinal
+  Krippendorff's alpha with bootstrap confidence intervals.
 
 ### RQ4: Contribution outcomes
 
 > How do maintainers decide whether to merge submitted PRs, and what factors influence
 > their decisions?
 
-- [`pr_status.csv`](experiments/rq4/pr_status.csv) records the state of each pull request.
-- [`rq4_per_pr_coverage.csv`](experiments/rq4/rq4_per_pr_coverage.csv) contains the
-  before-and-after coverage measurement for every contribution.
-- [`rq4_coverage_aggregate.csv`](experiments/rq4/rq4_coverage_aggregate.csv) contains the
-  aggregate line- and branch-coverage results.
+- [`pr_status.csv`](experiments/rq4/pr_status.csv) gives the state of each pull request.
+- [`rq4_per_pr_coverage.csv`](experiments/rq4/rq4_per_pr_coverage.csv) gives the
+  before-and-after coverage measurement for each contribution.
+- [`rq4_coverage_aggregate.csv`](experiments/rq4/rq4_coverage_aggregate.csv) summarizes
+  the line- and branch-coverage results.
 - [`pr_snapshot_manifest.csv`](experiments/rq4/pr_snapshot_manifest.csv) maps each target
   and pull request to its recorded revisions and snapshot files.
 - [`pr_snapshots/`](experiments/rq4/pr_snapshots/) contains the base, submitted, and
@@ -98,17 +98,8 @@ git clone https://github.com/amirdeljouyi/integrateme-replication-package-submis
 cd integrateme-replication-package-submission
 ```
 
-List the final result files:
-
-```bash
-find experiments -maxdepth 2 -type f | sort
-```
-
-Preview a result with Python's standard library:
-
-```bash
-python -c "import csv; print(*csv.DictReader(open('experiments/rq1/rq1_aggregate_summary.csv')), sep='\n')"
-```
+After cloning, open the files under `experiments/rq1/` through `experiments/rq4/` in a
+spreadsheet application, R, Python, or any other tool that reads CSV and JSON files.
 
 ## Software requirements
 
